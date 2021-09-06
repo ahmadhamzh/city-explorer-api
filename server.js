@@ -5,7 +5,7 @@ const app = express() // initialize your express app instance
 const cors = require('cors');
 app.use(cors())
 const weather = require('./data/weather.json')
- 
+// && element.lon == lon && element.lat == lat
 // a server endpoint 
 app.get('/', // our endpoint name
  function (req, res) { // callback function of what we should do with our request
@@ -16,10 +16,12 @@ app.get('/weather', // our endpoint name
  function (req, res) { // callback function of what we should do with our request
 
     const cityName = req.query.city_name
+    // const lon = req.query.lon
+    // const lat = req.query.lat
     // const lonValue = re
     if (cityName){
         const cityNameFiltered = weather.find(element => {
-            return element.city_name === cityName
+            return (element.city_name === cityName)
         })
         if (cityNameFiltered){
             // let dataArr = [cityNameFiltered[0].data[0].datetime,cityNameFiltered[0].data[0].weather.description]
@@ -38,9 +40,16 @@ app.get('/weather', // our endpoint name
 
             res.json(dataArr) 
         } else {
-            res.json('no data found') 
+            res.send(weather)
         }
-    }    
+            
+            
+        } else {
+            
+            res.json(weather) 
+    }
+
+     
 
 })
 
