@@ -6,6 +6,7 @@ app.use(cors())
 require('dotenv').config();
 const weather = require('./controller/weather.controller');
 const movies = require('./controller/moveis.controller');
+let port = process.env.PORT || 3000
 
 
 
@@ -18,5 +19,6 @@ app.get('/weather', weather)
 
 app.get('/moveis',movies)
 
-
-app.listen(3001) 
+app.listen(port, ()=>{
+    console.log('from port')
+}) 
