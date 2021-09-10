@@ -43,7 +43,6 @@ const movies = async (request, response) => {
                     'data' : data
                 })
                 response.json(data)
-                console.log(foundData)
             } else {
                 response.send('no data found')
             }
